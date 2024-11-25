@@ -1,7 +1,8 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import AnimatedLogo from './AnimatedLogo';
 
 interface IntroLoaderProps {
   onLoadingComplete: () => void;
@@ -56,9 +57,7 @@ export default function IntroLoader({ onLoadingComplete }: IntroLoaderProps) {
         exit={{ opacity: 0 }}
       >
         <div className="flex flex-col items-center gap-12">
-          <div className="text-[32px] text-white">
-            ATHENA.
-          </div>
+          <AnimatedLogo />
           <div className="relative w-[180px]">
             <div className="h-[1px] w-full bg-white/20">
               <motion.div 
