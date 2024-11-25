@@ -50,26 +50,34 @@ body {
 
 /* Add this to your existing CSS */
 .marquee-container {
-  width: 100%;
   overflow: hidden;
-  white-space: nowrap;
+  width: 100%;
 }
 
-.marquee {
+.marquee-right-to-left {
   display: inline-block;
-  animation: marquee 30s linear infinite;
+  animation: marqueeRightToLeft 30s linear infinite;
 }
 
-@keyframes marquee {
-  0% {
+.marquee-left-to-right {
+  display: inline-block;
+  animation: marqueeLeftToRight 30s linear infinite;
+}
+
+@keyframes marqueeRightToLeft {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(-33.33%);
   }
 }
 
-/* Optional: Pause animation on hover */
-.marquee-container:hover .marquee {
-  animation-play-state: paused;
+@keyframes marqueeLeftToRight {
+  from {
+    transform: translateX(-33.33%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

@@ -8,6 +8,7 @@ const config: NextConfig = {
         hostname: '**',
       },
     ],
+    unoptimized: true,
   },
 }
 

@@ -89,7 +89,13 @@ export default function Projects() {
   const featuredProjects = projects.slice(0, 5);
 
   return (
-    <section className="mt-40">
+    <motion.section 
+      initial={{ scale: 0.95, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true, margin: "-20%" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="mt-[-20vh] bg-white pt-40"
+    >
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -130,6 +136,6 @@ export default function Projects() {
           </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

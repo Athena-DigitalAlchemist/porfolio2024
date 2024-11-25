@@ -1,29 +1,78 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
+  const textVariants = {
+    initial: { 
+      y: 0,
+      scale: 1
+    },
+    hover: { 
+      y: -10,
+      scale: 1.05,
+      transition: { 
+        duration: 0.3, 
+        ease: "easeOut" 
+      } 
+    }
+  };
+
   return (
-    <section className="min-h-screen pt-[120px] px-8">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="w-full"
-      >
-        <h1 className="text-[clamp(80px,8vw,120px)] leading-[0.9] tracking-[-0.02em] font-normal">
-          A one-person creative studio specializing in web design and branding. Crafting elegant, personalized solutions to bring ideas to life with care and creativity.
+    <section className="min-h-[120vh] pt-[120px] px-8 relative">
+      <div className="w-full h-[calc(100vh-120px)] flex flex-col justify-between">
+        <h1 className="text-[clamp(80px,12vw,180px)] leading-[0.9] tracking-[-0.02em] font-normal">
+          <motion.div 
+            className="block mb-4 flex items-center gap-4 cursor-pointer"
+            initial="initial"
+            whileHover="hover"
+          >
+            <motion.span variants={textVariants}>CRAFTING</motion.span>
+            <motion.span variants={textVariants}>ELEGANT</motion.span>
+            <Image 
+              src="/images/sparkle.gif"
+              alt="sparkle animation"
+              width={250}
+              height={250}
+              className="object-cover"
+              unoptimized
+              priority
+            />
+          </motion.div>
+          <motion.div 
+            className="block mb-4 flex items-center gap-4 cursor-pointer"
+            initial="initial"
+            whileHover="hover"
+          >
+            <motion.span variants={textVariants}>PERSONALIZED</motion.span>
+            <motion.span variants={textVariants}>SOLUTIONS</motion.span>
+          </motion.div>
+          <motion.div 
+            className="block flex items-center gap-4 cursor-pointer"
+            initial="initial"
+            whileHover="hover"
+          >
+            <motion.span variants={textVariants}>TO</motion.span>
+            <motion.span variants={textVariants}>BRING</motion.span>
+            <Image 
+              src="/images/idea.gif"
+              alt="idea animation"
+              width={250}
+              height={250}
+              className="object-cover"
+              unoptimized
+              priority
+            />
+            <motion.span variants={textVariants}>TO</motion.span>
+            <motion.span variants={textVariants}>LIFE</motion.span>
+          </motion.div>
         </h1>
-      </motion.div>
-      
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="text-[18px] mt-5 tracking-[-0.02em]"
-      >
-        Scroll to explore
-      </motion.p>
+        
+        <p className="text-[18px] tracking-[-0.02em] mb-8">
+          Roll to explore
+        </p>
+      </div>
     </section>
   );
 }
