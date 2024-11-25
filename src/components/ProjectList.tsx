@@ -7,78 +7,91 @@ const projects = [
   {
     title: "Project One",
     type: "WEBSITE DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project1.jpg"
   },
   {
     title: "Project Two",
     type: "BRANDING",
+    job: "Freelance",
     year: "2024",
     image: "/images/project2.jpg"
   },
   {
     title: "Project Three",
     type: "UI/UX DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project3.jpg"
   },
   {
     title: "Project Four",
     type: "DEVELOPMENT",
+    job: "Freelance",
     year: "2024",
     image: "/images/project4.jpg"
   },
   {
     title: "Project Five",
     type: "WEBSITE DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project5.jpg"
   },
   {
     title: "Project Six",
     type: "BRANDING",
+    job: "Freelance",
     year: "2024",
     image: "/images/project6.jpg"
   },
   {
     title: "Project Seven",
     type: "UI/UX DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project7.jpg"
   },
   {
     title: "Project Eight",
     type: "DEVELOPMENT",
+    job: "Freelance",
     year: "2024",
     image: "/images/project8.jpg"
   },
   {
     title: "Project Nine",
     type: "WEBSITE DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project9.jpg"
   },
   {
     title: "Project Ten",
     type: "BRANDING",
+    job: "Freelance",
     year: "2024",
     image: "/images/project10.jpg"
   },
   {
     title: "Project Eleven",
     type: "UI/UX DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project11.jpg"
   },
   {
     title: "Project Twelve",
     type: "DEVELOPMENT",
+    job: "Freelance",
     year: "2024",
     image: "/images/project12.jpg"
   },
   {
     title: "Project Thirteen",
     type: "WEBSITE DESIGN",
+    job: "Freelance",
     year: "2024",
     image: "/images/project13.jpg"
   }

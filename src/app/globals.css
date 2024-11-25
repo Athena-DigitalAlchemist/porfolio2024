@@ -15,17 +15,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Project image hover container */
-.project-image-container {
-  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.group:hover .project-image-container {
-  opacity: 1;
-}
-
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -92,4 +81,21 @@ body {
   font-family: 'Oswald';
   src: url('/fonts/Oswald-Regular.ttf');
   font-weight: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.cursor-none {
+  cursor: none;
+}
+
+/* Optional: Add a subtle gradient overlay to the images */
+.project-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
 }

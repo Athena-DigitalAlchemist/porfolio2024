@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 const TypewriterTagline = () => {
   const [text1, setText1] = useState('');
   const [text2, setText2] = useState('');
-  const fullText1 = 'ATHENA BIKAKI_DIGITAL ALCHEMIST';
-  const fullText2 = 'CREATIVE SPIRIT BASED ON EARTH!';
+  const fullText1 = '> ATHENA BIKAKI_DIGITAL ALCHEMIST';
+  const fullText2 = '> CREATIVE SPIRIT BASED ON EARTH!';
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
