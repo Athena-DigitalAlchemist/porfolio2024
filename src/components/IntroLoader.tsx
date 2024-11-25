@@ -22,7 +22,7 @@ export default function IntroLoader({ onLoadingComplete }: IntroLoaderProps) {
           }
           return prev + 1;
         });
-      }, 20);
+      }, 30);
 
       return () => clearInterval(interval);
     }, 500);
@@ -59,7 +59,7 @@ export default function IntroLoader({ onLoadingComplete }: IntroLoaderProps) {
         <div className="flex flex-col items-center gap-12">
           <AnimatedLogo />
           <div className="relative w-[180px]">
-            <div className="h-[1px] w-full bg-white/20">
+            <div className="h-[5px] w-full bg-white/20">
               <motion.div 
                 className="h-full bg-white"
                 initial={{ scaleX: 0 }}

@@ -6,7 +6,7 @@ import Image from 'next/image';
 const AnimatedLogo = () => {
   return (
     <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
+      initial={{ scale: 0.9, opacity: 1 }}
       animate={{ 
         scale: 1,
         opacity: 1,
@@ -21,7 +21,7 @@ const AnimatedLogo = () => {
       className="relative"
     >
       <Image
-        src="/logo/Logo-w.svg"  // Updated to use the white version
+        src="/logo/animated-face.svg"  // Updated to use the white version
         alt="Athena logo"
         width={60}
         height={60}
