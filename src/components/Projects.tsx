@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const projects = [
   {
@@ -85,18 +86,26 @@ const projects = [
 ];
 
 export default function Projects() {
+  const featuredProjects = projects.slice(0, 5);
+
   return (
     <section className="mt-40">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="mb-20 text-[18px] tracking-wide px-8"
+        className="mb-20 text-[18px] tracking-wide px-8 flex justify-between items-center"
       >
-        Index [{projects.length}]
+        <div>Featured Projects [{featuredProjects.length}]</div>
+        <Link 
+          href="/index" 
+          className="text-[14px] tracking-wide hover:text-gray-500 transition-colors"
+        >
+          View All Projects →
+        </Link>
       </motion.div>
       
       <div className="grid grid-cols-1 gap-0 w-full">
-        {projects.map((project, index) => (
+        {featuredProjects.map((project, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0 }}
