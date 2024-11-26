@@ -50,17 +50,17 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="mt-auto">
-          {/* Red Line */}
-          <div className="w-full h-[2px] bg-red-600 mb-8" />
+          {/* Changed from bg-red-600 to bg-white */}
+          <div className="w-full h-[2px] bg-white mb-8" />
           
           {/* Credits with Typewriter Effect */}
           <div className="flex justify-between items-center text-sm">
             <TypewriterText 
-              text="> ATHENA BIKAKI_DIGITAL ALCHEMIST" 
+              text="- ATHENA BIKAKI_DIGITAL ALCHEMIST" 
               direction="ltr"
             />
             <TypewriterText 
-              text="> ALL RIGHTS RESERVED - 2024" 
+              text="-ALL RIGHTS RESERVED - 2024" 
               direction="rtl"
             />
           </div>
