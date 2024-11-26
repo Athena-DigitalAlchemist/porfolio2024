@@ -6,7 +6,7 @@ import TypewriterTagline from './TypewriterTagline';
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-[100] bg-white/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/50">
       <div className="grid grid-cols-[120px,300px,1fr,auto] h-[60px] border-b border-black">
         <Link href="/" className="text-[14px] border-r border-black p-4 flex items-center justify-center h-[60px]">
           <Image
