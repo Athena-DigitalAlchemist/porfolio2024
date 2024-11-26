@@ -5,100 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-
-const projects = [
-  {
-    title: "Project One",
-    type: "WEBSITE DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project1.jpg"
-  },
-  {
-    title: "Project Two",
-    type: "BRANDING",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project2.jpg"
-  },
-  {
-    title: "Project Three",
-    type: "UI/UX DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project3.jpg"
-  },
-  {
-    title: "Project Four",
-    type: "DEVELOPMENT",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project4.jpg"
-  },
-  {
-    title: "Project Five",
-    type: "WEBSITE DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project5.jpg"
-  },
-  {
-    title: "Project Six",
-    type: "BRANDING",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project6.jpg"
-  },
-  {
-    title: "Project Seven",
-    type: "UI/UX DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project7.jpg"
-  },
-  {
-    title: "Project Eight",
-    type: "DEVELOPMENT",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project8.jpg"
-  },
-  {
-    title: "Project Nine",
-    type: "WEBSITE DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project9.jpg"
-  },
-  {
-    title: "Project Ten",
-    type: "BRANDING",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project10.jpg"
-  },
-  {
-    title: "Project Eleven",
-    type: "UI/UX DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project11.jpg"
-  },
-  {
-    title: "Project Twelve",
-    type: "DEVELOPMENT",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project12.jpg"
-  },
-  {
-    title: "Project Thirteen",
-    type: "WEBSITE DESIGN",
-    job: "Freelance",
-    year: "2024",
-    image: "/images/project13.jpg"
-  }
-];
+import { projects } from '@/data/siteData';
 
 const generateFluidPath = (width: number, height: number, cursorX: number, intensity: number = 1.5) => {
   // Normalize cursor position to -1 to 1
@@ -121,6 +28,7 @@ const generateFluidPath = (width: number, height: number, cursorX: number, inten
 export default function Projects() {
   const featuredProjects = projects.slice(0, 5);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const imageRef = useRef<HTMLDivElement>(null);
   const imageWrapperRef = useRef<HTMLDivElement>(null);
   
@@ -247,6 +155,12 @@ export default function Projects() {
     };
   }, [hoveredIndex]);
 
+  const cycleImages = (projectIndex: number) => {
+    setCurrentImageIndex((prev) => 
+      prev === projects[projectIndex].images.length - 1 ? 0 : prev + 1
+    );
+  };
+
   return (
     <motion.section 
       initial={{ scale: 0.95, opacity: 0 }}
@@ -360,10 +274,10 @@ export default function Projects() {
                   }}
                 >
                   <Image
-                    src={featuredProjects[hoveredIndex].image}
+                    src={featuredProjects[hoveredIndex].featuredImage}
                     alt={featuredProjects[hoveredIndex].title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority
                   />

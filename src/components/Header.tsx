@@ -19,32 +19,32 @@ const Header = () => {
           />
         </Link>
         
-        <div className="border-r border-black p-4 h-[60px]">
+        <div className="border-r border-black h-[60px] flex items-center px-4">
           <TypewriterTagline />
         </div>
 
         <div className="border-r border-black h-[60px]"></div>
 
         <div className="flex items-center h-[60px]">
-          <Link href="/index" className="text-[14px] h-full flex items-center px-8">
+          <Link href="/projectIndex" className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors">
             index
           </Link>
-          <Link href="/about" className="text-[14px] h-full flex items-center px-8">
+          <Link href="/about" className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors">
             about
           </Link>
-          <Link href="/store" className="text-[14px] h-full flex items-center px-8">
+          <Link href="/store" className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors">
             store
           </Link>
-          <Link 
-            href="/contact" 
-            className="text-[14px] h-[40px] flex items-center px-8 bg-black text-white my-auto"
+          <a 
+            href="mailto:your.email@example.com" 
+            className="text-[14px] h-[40px] flex items-center px-8 bg-black text-white my-auto hover:bg-gray-800 transition-colors"
           >
             LET'S TALK
-          </Link>
+          </a>
         </div>
       </div>
     </header>
   );
 };
 
-export default Header; 
+export default Header;

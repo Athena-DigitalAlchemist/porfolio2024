@@ -1,20 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const servicesRow1 = [
-  "Web Design",
-  "Brand Identity",
-  "UI/UX Design",
-  "Web Development",
-];
-
-const servicesRow2 = [
-  "Digital Strategy",
-  "Content Creation",
-  "Motion Design",
-  "Art Direction",
-];
+import { services } from '@/data/siteData';
 
 export default function Services() {
   return (
@@ -29,7 +16,7 @@ export default function Services() {
         <div className="bg-black border-t border-b border-white/20">
           <div className="marquee-container h-[80px] flex items-center">
             <div className="marquee-right-to-left whitespace-nowrap">
-              {[...servicesRow1, ...servicesRow1, ...servicesRow1].map((service, index) => (
+              {[...services.row1, ...services.row1, ...services.row1].map((service, index) => (
                 <span key={index} className="text-white text-[60px] leading-none mx-8 font-normal inline-block">
                   {service}
                   <span className="text-white/40 mx-8">-</span>
@@ -43,7 +30,7 @@ export default function Services() {
         <div className="bg-black border-t border-b border-white/20">
           <div className="marquee-container h-[80px] flex items-center">
             <div className="marquee-left-to-right whitespace-nowrap">
-              {[...servicesRow2, ...servicesRow2, ...servicesRow2].map((service, index) => (
+              {[...services.row2, ...services.row2, ...services.row2].map((service, index) => (
                 <span key={index} className="text-white text-[60px] leading-none mx-8 font-normal inline-block">
                   {service}
                   <span className="text-white/40 mx-8">-</span>
@@ -55,4 +42,4 @@ export default function Services() {
       </motion.div>
     </section>
   );
-} 
+}
