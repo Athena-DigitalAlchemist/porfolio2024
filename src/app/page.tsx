@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Services from "@/components/Services";
+import Footer from "@/components/Footer";
 import IntroLoader from "@/components/IntroLoader";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -35,6 +36,7 @@ export default function Home() {
             <Hero />
             <Projects />
             <Services />
+            <Footer />
           </main>
         </motion.div>
       )}
