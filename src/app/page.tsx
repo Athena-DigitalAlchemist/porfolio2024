@@ -15,7 +15,6 @@ export default function Home() {
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
-    // Delay showing content until curtain animation starts
     setTimeout(() => setShowContent(true), 200);
   };
 

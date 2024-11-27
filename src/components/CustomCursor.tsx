@@ -1,60 +1,78 @@
+// src/components/CustomCursor.tsx
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
 
 export default function CustomCursor() {
-  const [isVisible, setIsVisible] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Optimized spring config
-  const springConfig = { 
-    damping: 35, 
-    stiffness: 700, 
-    mass: 0.2 
-  };
-
-  const cursorX = useSpring(mouseX, springConfig);
-  const cursorY = useSpring(mouseY, springConfig);
+  const cursorDotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let rafId: number;
-    
-    const moveCursor = (e: MouseEvent) => {
-      // Use requestAnimationFrame for smooth performance
-      rafId = requestAnimationFrame(() => {
-        mouseX.set(e.clientX - 16);
-        mouseY.set(e.clientY - 16);
+    const cursor = cursorRef.current;
+    const cursorDot = cursorDotRef.current;
+    if (!cursor || !cursorDot) return;
+
+    const onMouseMove = (e: MouseEvent) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.6,
+        ease: 'expo.out'
+      });
+
+      gsap.to(cursorDot, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1,
       });
     };
 
-    // Show cursor after loading
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-      window.addEventListener('mousemove', moveCursor);
-    }, 2000);
+    const handleMouseEnter = () => {
+      cursor?.classList.add('cursor-hover');
+    };
+
+    const handleMouseLeave = () => {
+      cursor?.classList.remove('cursor-hover');
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
+    interactiveElements.forEach(element => {
+      element.addEventListener('mouseenter', handleMouseEnter);
+      element.addEventListener('mouseleave', handleMouseLeave);
+    });
 
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('mousemove', moveCursor);
-      if (rafId) cancelAnimationFrame(rafId);
+      document.removeEventListener('mousemove', onMouseMove);
+      interactiveElements.forEach(element => {
+        element.removeEventListener('mouseenter', handleMouseEnter);
+        element.removeEventListener('mouseleave', handleMouseLeave);
+      });
     };
-  }, [mouseX, mouseY]);
-
-  if (!isVisible) return null;
+  }, []);
 
   return (
-    <motion.div
-      ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference will-change-transform"
-      style={{
-        x: cursorX,
-        y: cursorY,
-      }}
-    >
-      <div className="w-8 h-8 bg-white rounded-full" />
-    </motion.div>
+    <>
+      <motion.div
+        ref={cursorRef}
+        className="fixed pointer-events-none z-[9999] w-8 h-8 -ml-4 -mt-4 mix-blend-difference"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="w-full h-full rounded-full bg-white transition-transform duration-300 ease-out transform cursor-circle" />
+      </motion.div>
+      <motion.div
+        ref={cursorDotRef}
+        className="fixed pointer-events-none z-[9999] w-1 h-1 -ml-[2px] -mt-[2px] mix-blend-difference"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+      >
+        <div className="w-full h-full rounded-full bg-white" />
+      </motion.div>
+    </>
   );
-} 
+}

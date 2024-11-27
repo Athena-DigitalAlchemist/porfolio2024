@@ -1,83 +1,67 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import SplitType from 'split-type';
 import TypewriterText from './TypewriterText';
 
 export default function Hero() {
-  const textVariants = {
-    initial: { 
-      y: 0,
-      scale: 1
-    },
-    hover: { 
-      y: -5,
-      scale: 1.02,
-      transition: { 
-        duration: 0.3, 
-        ease: "easeOut" 
-      } 
-    }
-  };
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (!titleRef.current) return;
+
+    const splitText = new SplitType(titleRef.current, {
+      types: 'words,chars',
+      tagName: 'span'
+    });
+
+    gsap.from(splitText.chars, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.05,
+      duration: 1.5,
+      ease: "power4.out",
+      delay: 1.5
+    });
+
+    return () => {
+      splitText.revert();
+    };
+  }, []);
 
   return (
-    <section className="min-h-[120vh] pt-[120px] px-8 relative">
-      <div className="w-full h-[calc(100vh-120px)] flex flex-col justify-between">
-        <h1 className="text-[clamp(80px,12vw,180px)] leading-[0.9] tracking-[-0.02em] font-normal">
-          <motion.div 
-            className="block mb-4 flex items-center gap-4 cursor-pointer overflow-hidden"
-            initial="initial"
-            whileHover="hover"
-          >
-            <motion.span variants={textVariants} className="inline-block">CRAFTING</motion.span>
-            <motion.span variants={textVariants} className="inline-block">ELEGANT</motion.span>
-            <Image 
-              src="/images/sparkle.gif"
-              alt="sparkle animation"
-              width={250}
-              height={250}
-              className="object-cover"
-              unoptimized
-              priority
-            />
-          </motion.div>
-          <motion.div 
-            className="block mb-4 flex items-center gap-4 cursor-pointer overflow-hidden"
-            initial="initial"
-            whileHover="hover"
-          >
-            <motion.span variants={textVariants} className="inline-block">PERSONALIZED</motion.span>
-            <motion.span variants={textVariants} className="inline-block">SOLUTIONS</motion.span>
-          </motion.div>
-          <motion.div 
-            className="block flex items-center gap-4 cursor-pointer overflow-hidden"
-            initial="initial"
-            whileHover="hover"
-          >
-            <motion.span variants={textVariants} className="inline-block">TO</motion.span>
-            <motion.span variants={textVariants} className="inline-block">BRING</motion.span>
-            <Image 
-              src="/images/idea.gif"
-              alt="idea animation"
-              width={250}
-              height={250}
-              className="object-cover"
-              unoptimized
-              priority
-            />
-            <motion.span variants={textVariants} className="inline-block">IDEAS</motion.span>
-            <motion.span variants={textVariants} className="inline-block">TO</motion.span>
-            <motion.span variants={textVariants} className="inline-block">LIFE</motion.span>
-          </motion.div>
+    <section className="min-h-screen pt-32">
+      <div className="w-full">
+        <h1 
+          ref={titleRef}
+          className="font-bebas text-[clamp(80px,12vw,180px)] leading-[0.9] tracking-[-0.02em] px-8"
+        >
+          <div className="flex flex-wrap mb-4">
+            <span className="mr-[0.2em]">CRAFTING</span>
+            <span>ELEGANT</span>
+          </div>
+          <div className="flex flex-wrap mb-4">
+            <span className="mr-[0.2em]">PERSONALIZED</span>
+            <span>SOLUTIONS</span>
+          </div>
+          <div className="flex flex-wrap">
+            <span className="mr-[0.2em]">TO</span>
+            <span className="mr-[0.2em]">BRING</span>
+            <span className="mr-[0.2em]">IDEAS</span>
+            <span className="mr-[0.2em]">TO</span>
+            <span>LIFE</span>
+          </div>
         </h1>
-        <motion.h3 
+        <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="mb-8 text-lg tracking-wider"
+          transition={{ delay: 2.5, duration: 1 }}
+          className="mt-8 text-lg tracking-wider px-8"
         >
-          <TypewriterText text="> SCROLL TO EXPLORE" delay={100} />
-        </motion.h3>
+          <TypewriterText text="> SCROLL TO EXPLORE" delay={150} />
+        </motion.div>
       </div>
     </section>
   );
