@@ -176,7 +176,7 @@ export default function Projects() {
       >
         <div className="font-bebas">Featured Projects [{featuredProjects.length}]</div>
         <Link 
-          href="/projects"
+          href="http://localhost:3000/projectIndex"
           className="font-bebas text-[14px] tracking-wide hover:text-gray-500 transition-colors"
         >
           View All Projects →
