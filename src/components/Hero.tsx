@@ -69,8 +69,14 @@ export default function Hero() {
             <motion.span variants={textVariants} className="inline-block">LIFE</motion.span>
           </motion.div>
         </h1>
-        
-        <TypewriterText />
+        <motion.h3 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="mb-8 text-lg tracking-wider"
+        >
+          <TypewriterText text="> SCROLL TO EXPLORE" delay={100} />
+        </motion.h3>
       </div>
     </section>
   );

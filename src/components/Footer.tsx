@@ -10,16 +10,24 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-20 h-full flex flex-col justify-between">
         {/* Main Content */}
         <div>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[120px] md:text-[180px] font-bebas leading-none mb-8"
-          >
-            LET'S WORK TOGETHER
-            <br />
-            <span className="text-[40px] md:text-[60px] block mt-4">— DROP ME A LINE!</span>
-          </motion.h2>
+          <div className="mb-8">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[120px] md:text-[180px] font-bebas leading-none"
+            >
+              LET'S WORK TOGETHER
+            </motion.h1>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[40px] md:text-[60px] mt-4"
+            >
+              — DROP ME A LINE!
+            </motion.h3>
+          </div>
 
           {/* Contact Links with arrows */}
           <div className="mt-20 mb-40">
@@ -54,18 +62,24 @@ export default function Footer() {
           <div className="w-full h-[2px] bg-white mb-8" />
           
           {/* Credits with Typewriter Effect */}
-          <div className="flex justify-between items-center text-sm">
-            <TypewriterText 
-              text="- ATHENA BIKAKI_DIGITAL ALCHEMIST" 
-              direction="ltr"
-            />
-            <TypewriterText 
-              text="-ALL RIGHTS RESERVED - 2024" 
-              direction="rtl"
-            />
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 font-bebas text-sm">
+            <div className="flex flex-col gap-2">
+              <TypewriterText text="> ATHENA BIKAKI_DIGITAL ALCHEMIST" delay={50} />
+              <TypewriterText text="> ALL RIGHTS RESERVED - 2024" delay={50} />
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-right"
+            >
+              <Link href="#top" className="hover:opacity-70 transition-opacity">
+                BACK TO TOP ↑
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>
     </footer>
   );
-} 
+}

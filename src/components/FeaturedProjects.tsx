@@ -25,7 +25,7 @@ const generateFluidPath = (width: number, height: number, cursorX: number, inten
   `;
 };
 
-export default function Projects() {
+export default function FeaturedProjects() {
   const featuredProjects = projects.slice(0, 5);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -96,64 +96,50 @@ export default function Projects() {
   }, [hoveredIndex]);
 
   useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (imageRef.current && imageWrapperRef.current && hoveredIndex !== null) {
         const rect = imageRef.current.getBoundingClientRect();
         const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
         const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
 
-        // Generate new fluid path with extreme intensity
-        const fluidPath = generateFluidPath(rect.width, rect.height, mouseX * 4);
-
-        // Apply the fluid path with even faster animation
-        gsap.to(imageWrapperRef.current, {
-          clipPath: fluidPath,
-          duration: 0.2,
-          ease: "power1.out",
-        });
-
-        // Extreme image transformation
         gsap.to(imageRef.current, {
-          x: mouseX * 100,
-          y: mouseY * 80,
-          rotateY: mouseX * 35,
-          rotateX: -mouseY * 35,
-          scale: 1 + Math.abs(mouseX) * 0.4,
-          duration: 0.2,
-          ease: "power1.out",
+          x: mouseX * 30,
+          y: mouseY * 20,
+          rotateY: mouseX * 20,
+          rotateX: -mouseY * 20,
+          duration: 0.5,
+          ease: "power2.out"
         });
+
+        // Update spring animation position
+        const moveX = e.clientX;
+        const moveY = e.clientY;
+        springX.set(moveX);
+        springY.set(moveY);
       }
     };
 
     const handleLeave = () => {
-      if (imageRef.current && imageWrapperRef.current && hoveredIndex !== null) {
-        // More dramatic reset animation
-        gsap.to(imageWrapperRef.current, {
-          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-          duration: 0.3,
-          ease: "back.out(1.5)",
-        });
-
+      if (imageRef.current && hoveredIndex !== null) {
         gsap.to(imageRef.current, {
           x: 0,
           y: 0,
           rotateX: 0,
           rotateY: 0,
-          scale: 1,
-          duration: 0.3,
-          ease: "back.out(1.5)",
+          duration: 0.5,
+          ease: "power2.out"
         });
       }
     };
 
-    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleLeave);
     
     return () => {
-      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleLeave);
     };
-  }, [hoveredIndex]);
+  }, [hoveredIndex, springX, springY]);
 
   const cycleImages = (projectIndex: number) => {
     setCurrentImageIndex((prev) => 
@@ -172,9 +158,9 @@ export default function Projects() {
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="mb-20 text-[18px] tracking-wide px-8 flex justify-between items-center"
+        className="mb-20 tracking-wide px-8 flex justify-between items-center"
       >
-        <div className="font-bebas">Featured Projects [{featuredProjects.length}]</div>
+        <h2 className="font-bebas text-[32px]">Featured Projects [{featuredProjects.length}]</h2>
         <Link 
           href="http://localhost:3000/projectIndex"
           className="font-bebas text-[14px] tracking-wide hover:text-gray-500 transition-colors"
@@ -198,10 +184,10 @@ export default function Projects() {
               }`}
             >
               <div className="px-8 grid grid-cols-[minmax(200px,1fr),minmax(200px,1fr),minmax(150px,1fr),100px] gap-8 items-center">
-                <div className="font-bebas text-[14px] tracking-wide cursor-pointer">{project.title}</div>
-                <div className="font-bebas text-[14px] tracking-wide">{project.type}</div>
-                <div className="font-bebas text-[14px] tracking-wide text-right">{project.job}</div>
-                <div className="font-bebas text-[14px] tracking-wide text-right">{project.year}</div>
+                <div className="font-bebas text-[16px] tracking-wide cursor-pointer">{project.title}</div>
+                <div className="font-bebas text-[16px] tracking-wide">{project.type}</div>
+                <div className="font-bebas text-[16px] tracking-wide text-right">{project.job}</div>
+                <div className="font-bebas text-[16px] tracking-wide text-right">{project.year}</div>
               </div>
             </motion.div>
           </div>

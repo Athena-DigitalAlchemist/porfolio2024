@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
 import IntroLoader from "@/components/IntroLoader";
@@ -34,7 +34,7 @@ export default function Home() {
           <Header />
           <main className="min-h-screen">
             <Hero />
-            <Projects />
+            <FeaturedProjects />
             <Services />
             <Footer />
           </main>

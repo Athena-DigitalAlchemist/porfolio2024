@@ -50,7 +50,7 @@ export default function TypewriterText({ text = '', direction = 'ltr' }: Typewri
   if (!text) return null;
 
   return (
-    <div className={`inline-block font-oswald ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
+    <div className={`inline-block font-bebas ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
       {displayText}
       <span 
         className={`inline-block w-[2px] h-[14px] bg-white ml-[2px] -mb-[2px] ${
@@ -59,4 +59,4 @@ export default function TypewriterText({ text = '', direction = 'ltr' }: Typewri
       />
     </div>
   );
-} 
+}
