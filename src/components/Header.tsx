@@ -26,13 +26,22 @@ const Header = () => {
         <div className="border-r border-black h-[60px]"></div>
 
         <div className="flex items-center h-[60px]">
-          <Link href="/projectIndex" className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors">
+          <Link 
+            href="/projectIndex" 
+            className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors"
+          >
             index
           </Link>
-          <Link href="/about" className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors">
+          <Link 
+            href="/about" 
+            className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors"
+          >
             about
           </Link>
-          <Link href="/store" className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors">
+          <Link 
+            href="/store" 
+            className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors"
+          >
             store
           </Link>
           <a 
