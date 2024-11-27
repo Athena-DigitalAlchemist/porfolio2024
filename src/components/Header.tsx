@@ -2,9 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import TypewriterTagline from './TypewriterTagline';
+import { projects } from '@/data/siteData';
 
 const Header = () => {
+  const pathname = usePathname();
+  const totalProjectCount = projects.length.toString().padStart(2, '0');
+
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] bg-white/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/50">
       <div className="grid grid-cols-[120px,300px,1fr,auto] h-[60px] border-b border-black">
@@ -28,15 +33,17 @@ const Header = () => {
         <div className="flex items-center h-[60px]">
           <Link 
             href="/projectIndex" 
-            className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors"
+            className="text-[14px] h-full flex items-center gap-2 px-8 hover:text-gray-500 transition-colors"
           >
-            index
+            index <span className="text-xs opacity-60">({totalProjectCount})</span>
           </Link>
           <Link 
             href="/about" 
-            className="text-[14px] h-full flex items-center px-8 hover:text-gray-500 transition-colors"
+            className={`font-bebas text-[14px] tracking-wide hover:opacity-60 transition-opacity ${
+              pathname === '/about' ? 'opacity-60' : ''
+            }`}
           >
-            about
+            WHO I AM
           </Link>
           <Link 
             href="/store" 
@@ -48,7 +55,7 @@ const Header = () => {
             href="mailto:your.email@example.com" 
             className="text-[14px] h-[40px] flex items-center px-8 bg-black text-white my-auto hover:bg-gray-800 transition-colors"
           >
-            LET'S TALK
+            LET&apos;S TALK
           </a>
         </div>
       </div>

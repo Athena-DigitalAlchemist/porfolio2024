@@ -1,234 +1,146 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState, useRef, useEffect } from 'react';
+import { projects } from '@/data/siteData';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { projects } from '@/data/siteData';
-import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-
-const generateFluidPath = (width: number, height: number, cursorX: number, intensity: number = 1.5) => {
-  // Normalize cursor position to -1 to 1
-  const x = Math.max(-1, Math.min(1, cursorX));
-  
-  // Calculate control points with extreme intensity
-  const offset = width * intensity * x;
-  const verticalOffset = height * intensity * 0.5;
-  
-  // Generate path with extreme curves
-  return `
-    M 0,0
-    C ${width/4},${offset} ${width*3/4},${-offset*1.2} ${width},0
-    L ${width},${height}
-    C ${width*3/4},${height-offset*1.2} ${width/4},${height+offset} 0,${height}
-    Z
-  `;
-};
+import gsap from 'gsap';
 
 export default function ProjectIndexPage() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const imageWrapperRef = useRef<HTMLDivElement>(null);
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.8 };
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const imageWrapperRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (imageRef.current && imageWrapperRef.current && hoveredIndex !== null) {
-        const rect = imageRef.current.getBoundingClientRect();
-        const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
-        const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+    if (hoveredIndex !== null && imageWrapperRefs.current[hoveredIndex] && imageRefs.current[hoveredIndex]) {
+      const wrapper = imageWrapperRefs.current[hoveredIndex];
+      const image = imageRefs.current[hoveredIndex];
 
-        gsap.to(imageRef.current, {
-          x: mouseX * 30,
-          y: mouseY * 20,
-          rotateY: mouseX * 20,
-          rotateX: -mouseY * 20,
-          duration: 0.5,
-          ease: "power2.out"
-        });
+      gsap.set([wrapper, image], {
+        opacity: 0,
+        y: 20,
+        scale: 0.95
+      });
 
-        // Update spring animation position
-        const moveX = e.clientX;
-        const moveY = e.clientY;
-        springX.set(moveX);
-        springY.set(moveY);
-      }
-    };
-
-    const handleLeave = () => {
-      if (imageRef.current && hoveredIndex !== null) {
-        gsap.to(imageRef.current, {
-          x: 0,
-          y: 0,
-          rotateX: 0,
-          rotateY: 0,
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleLeave);
-    
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleLeave);
-    };
-  }, [hoveredIndex, springX, springY]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    mouseX.set(e.clientX - 200);
-    mouseY.set(e.clientY - 150);
-  };
+      gsap.to([wrapper, image], {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        ease: "power3.out",
+        stagger: 0.1
+      });
+    }
+  }, [hoveredIndex]);
 
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <div className="w-full py-40 px-16">
-          <div className="max-w-[1920px] mx-auto">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-[clamp(80px,12vw,180px)] leading-[0.9] tracking-[-0.02em] font-light mb-12 text-black"
-            >
-              INDEX
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-2xl font-light max-w-2xl text-black"
-            >
-              A curated collection of my design projects, showcasing my approach to creating thoughtful and impactful digital experiences.
-            </motion.p>
-          </div>
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="w-full bg-white min-h-screen pt-40"
+      >
+        <div className="px-8 mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-[60%]"
+          >
+            <h1 className="font-bebas text-[128px] leading-none tracking-wide mb-6">
+              Index
+            </h1>
+            <p className="font-bebas text-[18px] tracking-wide">
+              This is a collection of my design projects, showcasing my skills in web, 
+              branding, and graphic design. Feel free to explore and see my creative 
+              process in action!
+            </p>
+          </motion.div>
         </div>
 
-        {/* Project List */}
-        <section className="mb-40">
-          <div className="w-full">
-            <div className="grid grid-cols-1 gap-0">
-              {projects.map((project, index) => (
-                <Link
-                  key={index}
-                  href={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  onMouseMove={handleMouseMove}
-                >
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="border-t border-black py-8 hover:bg-black/5 transition-colors"
-                  >
-                    <div className="max-w-[1920px] mx-auto px-16 grid grid-cols-[1fr,2fr,1fr] items-center">
-                      <div className="text-[14px] tracking-wide">{project.title}</div>
-                      <div className="text-[14px] tracking-wide text-center">{project.type}</div>
-                      <div className="text-[14px] tracking-wide text-right">{project.year}</div>
-                    </div>
-                  </motion.div>
-                </Link>
-              ))}
-              <div className="border-t border-black" />
-            </div>
-          </div>
-
-          {/* Floating Image */}
-          <AnimatePresence mode="sync">
-            {hoveredIndex !== null && (
+        <div className="px-8 mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="font-bebas text-[18px] tracking-wide"
+          >
+            All Projects [{projects.length}]
+          </motion.h2>
+        </div>
+        
+        <div className="w-full mb-40">
+          {projects.map((project, index) => (
+            <Link 
+              href={`/projects/${project.slug}`} 
+              key={project.slug}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
               <motion.div
-                key={hoveredIndex}
-                initial={{ 
-                  clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
-                  scale: 0.9,
-                  filter: "brightness(0.3)",
-                }}
-                animate={{ 
-                  clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                  scale: 1,
-                  filter: "brightness(1)",
-                  transition: {
-                    duration: 0.35,
-                    clipPath: {
-                      duration: 0.35,
-                      ease: [0.33, 1, 0.68, 1],
-                    },
-                    scale: {
-                      duration: 0.35,
-                      ease: [0.33, 1, 0.68, 1],
-                    }
-                  }
-                }}
-                exit={{ 
-                  clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
-                  scale: 0.9,
-                  filter: "brightness(0.3)",
-                  transition: {
-                    duration: 0.15,
-                    ease: [0.33, 0, 0.67, 0],
-                    clipPath: {
-                      duration: 0.15,
-                      ease: [0.33, 0, 0.67, 0],
-                    },
-                  }
-                }}
-                style={{
-                  position: 'fixed',
-                  left: 0,
-                  top: 0,
-                  x: springX,
-                  y: springY,
-                  translateX: '-50%',
-                  translateY: '-50%',
-                  pointerEvents: 'none',
-                  zIndex: 50,
-                  perspective: '1000px'
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="border-t border-black/20 group"
               >
-                <div
-                  ref={imageWrapperRef}
-                  className="relative w-[500px] h-[350px] rounded-sm overflow-hidden bg-black/90 [transform-style:preserve-3d]"
-                  style={{
-                    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                    transformOrigin: "center center",
-                  }}
-                >
-                  <div
-                    ref={imageRef}
-                    className="w-full h-full transform-gpu will-change-transform [transform-style:preserve-3d] transition-[filter] duration-300"
-                    style={{
-                      transformOrigin: "center center",
-                    }}
-                  >
-                    <Image
-                      src={projects[hoveredIndex].featuredImage}
-                      alt={projects[hoveredIndex].title}
-                      fill
-                      className="object-cover transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      priority
-                    />
+                <div className="px-8 py-4 relative">
+                  <div className="flex justify-between items-start relative z-10">
+                    <div className="space-y-0.5">
+                      <h3 className="font-bebas text-[24px] tracking-wide">
+                        {project.title}
+                      </h3>
+                      <p className="font-bebas text-[13px] tracking-wide">
+                        {project.type}
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-12">
+                      <div>
+                        <p className="font-bebas text-[13px] tracking-wide">
+                          {project.job}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="font-bebas text-[13px] tracking-wide">
+                          {project.year}
+                        </p>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Image Preview */}
+                  {hoveredIndex === index && (
+                    <div 
+                      ref={el => imageWrapperRefs.current[index] = el}
+                      className="absolute right-[30%] top-1/2 -translate-y-1/2 w-[350px] h-[400px] overflow-hidden"
+                    >
+                      <div
+                        ref={el => imageRefs.current[index] = el}
+                        className="w-full h-full relative"
+                      >
+                        <Image
+                          src={project.featuredImage}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          sizes="350px"
+                          priority
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.div>
-            )}
-          </AnimatePresence>
-        </section>
-      </main>
+            </Link>
+          ))}
+          <div className="border-t border-black/20" />
+        </div>
+      </motion.section>
       <Footer />
     </>
   );

@@ -17,7 +17,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className="text-[120px] md:text-[180px] font-bebas leading-none"
             >
-              LET'S WORK TOGETHER
+              LET&apos;S WORK TOGETHER
             </motion.h1>
             <motion.h3 
               initial={{ opacity: 0, y: 20 }}

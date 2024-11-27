@@ -65,6 +65,7 @@ export default function Hero() {
               unoptimized
               priority
             />
+            <motion.span variants={textVariants} className="inline-block">IDEAS</motion.span>
             <motion.span variants={textVariants} className="inline-block">TO</motion.span>
             <motion.span variants={textVariants} className="inline-block">LIFE</motion.span>
           </motion.div>

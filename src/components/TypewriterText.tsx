@@ -5,12 +5,16 @@ import { useState, useEffect } from 'react';
 interface TypewriterTextProps {
   text: string;
   direction?: 'ltr' | 'rtl';
+  delay?: number;
 }
 
-export default function TypewriterText({ text = '', direction = 'ltr' }: TypewriterTextProps) {
+export default function TypewriterText({ 
+  text = '', 
+  direction = 'ltr',
+  delay = 50 
+}: TypewriterTextProps) {
   const [displayText, setDisplayText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
     if (!text) return;
@@ -23,7 +27,6 @@ export default function TypewriterText({ text = '', direction = 'ltr' }: Typewri
           setDisplayText(text.slice(0, currentIndex + 1));
           currentIndex++;
         } else {
-          setIsTypingComplete(true);
           clearInterval(typingInterval);
         }
       } else {
@@ -31,11 +34,10 @@ export default function TypewriterText({ text = '', direction = 'ltr' }: Typewri
           setDisplayText(text.slice(currentIndex));
           currentIndex--;
         } else {
-          setIsTypingComplete(true);
           clearInterval(typingInterval);
         }
       }
-    }, 50);
+    }, delay);
 
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
@@ -45,7 +47,7 @@ export default function TypewriterText({ text = '', direction = 'ltr' }: Typewri
       clearInterval(typingInterval);
       clearInterval(cursorInterval);
     };
-  }, [text, direction]);
+  }, [text, direction, delay]);
 
   if (!text) return null;
 
