@@ -108,33 +108,33 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
 
-                {/* Image Preview - Hidden on Mobile */}
+                {/* Image Preview matching Project Index style */}
                 {hoveredIndex === index && (
-                  <div 
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     ref={el => {
                       if (el) imageWrapperRefs.current[index] = el;
                     }}
-                    className="hidden md:block absolute right-[30%] top-1/2 -translate-y-1/2 w-[350px] h-[400px] overflow-hidden"
+                    className="hidden md:block absolute right-0 top-0 w-[400px] h-full"
                   >
                     <div
                       ref={el => {
                         if (el) imageRefs.current[index] = el;
                       }}
-                      className="w-full h-full relative"
+                      className="relative w-full h-full"
                     >
                       <Image
                         src={project.featuredImage}
                         alt={project.title}
                         fill
-                        className={`object-cover transition-all duration-300 ${
-                          loadingStates[index] ? 'scale-110 blur-sm' : 'scale-100 blur-0'
-                        }`}
-                        sizes="(max-width: 768px) 100vw, 350px"
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 400px"
                         priority
                         onLoadingComplete={() => handleImageLoad(index)}
                       />
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Mobile Image Preview */}
@@ -144,9 +144,7 @@ export default function FeaturedProjects() {
                       src={project.featuredImage}
                       alt={project.title}
                       fill
-                      className={`object-cover transition-all duration-300 ${
-                        loadingStates[index] ? 'scale-110 blur-sm' : 'scale-100 blur-0'
-                      }`}
+                      className="object-cover project-image"
                       sizes="100vw"
                       priority={index === 0}
                       onLoadingComplete={() => handleImageLoad(index)}
@@ -158,15 +156,6 @@ export default function FeaturedProjects() {
           </Link>
         ))}
         <div className="border-t border-black/20" />
-      </div>
-
-      <div className="px-8 mt-8 flex justify-end">
-        <Link 
-          href="/projectIndex"
-          className="font-bebas text-[14px] tracking-wide hover:opacity-60 transition-opacity"
-        >
-          View All Projects →
-        </Link>
       </div>
     </motion.section>
   );

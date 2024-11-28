@@ -118,7 +118,7 @@ export default function ProjectIndexPage() {
                       </div>
                     </div>
 
-                    {/* Image Preview */}
+                    {/* Updated Image Preview */}
                     {hoveredIndex === index && (
                       <div 
                         ref={(el) => setWrapperRef(el, index)}
@@ -132,7 +132,7 @@ export default function ProjectIndexPage() {
                             src={project.featuredImage}
                             alt={project.title}
                             fill
-                            className="object-cover"
+                            className="object-cover project-image"
                             sizes="350px"
                             priority
                           />

@@ -13,6 +13,7 @@ body {
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: auto;
 }
 
 /* Custom scrollbar */
@@ -87,6 +88,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Image styles */
+.project-image {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  transition: filter 0.3s ease;
+}
+
+.project-image:hover {
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
 /* Optional: Add a subtle gradient overlay to the images */
 .project-image::after {
   content: '';
@@ -95,8 +106,6 @@ html {
   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%);
   pointer-events: none;
 }
-<<<<<<< HEAD
-=======
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -114,4 +123,3 @@ html {
   left: 0;
   z-index: -1;
 }
->>>>>>> 638a50ec27b9df14c169317028db650b753911e0

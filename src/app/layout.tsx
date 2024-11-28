@@ -6,74 +6,57 @@ import "./globals.css";
 const bebasNeue = localFont({
   src: './fonts/BebasNeue-Regular.ttf',
   variable: '--font-bebas-neue',
+  display: 'swap',
 });
 
 const oswald = localFont({
-  src: './fonts/Oswald-Regular.ttf',
+  src: [
+    {
+      path: './fonts/Oswald-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
   variable: '--font-oswald',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Athena Bikaki | Portfolio 2024 _ Digital Alchemist",
-  description: "Creative spirit based on Earth! Digital Alchemist specializing in Web Development, UI/UX Design, and Digital Experiences.",
-  keywords: ["Athena Bikaki", "Web Development", "UI/UX Design", "Creative Developer", "Digital Design"],
-  authors: [{ name: "Athena Bikaki" }],
-  creator: "Athena Bikaki",
-  publisher: "Athena Bikaki",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://www.athenabikaki.com",
-    title: "Athena Bikaki | Portfolio 2024 _ Digital Alchemist",
-    description: "Creative spirit based on Earth! Digital Alchemist specializing in Web Development, UI/UX Design, and Digital Experiences.",
-    siteName: "Athena Bikaki Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Athena Bikaki Portfolio"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Athena Bikaki | Portfolio 2024 _ Digital Alchemist",
-    description: "Creative spirit based on Earth! Digital Alchemist specializing in Web Development, UI/UX Design, and Digital Experiences.",
-    images: ["/og-image.jpg"],
-  },
+  title: "Athena Bikaki | Portfolio 2024",
+  description: "Athena Bikaki's Portfolio",
   icons: {
     icon: [
-      { url: "/favicon/favicon.ico" },
-      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      {
+        url: "/favicon/favicon.ico",
+        sizes: "any",
+      },
+      {
+        url: "/favicon/favicon.svg",
+        type: "image/svg+xml",
+      },
     ],
-    apple: [
-      { url: "/favicon/apple-touch-icon.png" }
-    ],
+    apple: {
+      url: "/favicon/apple-touch-icon.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
     other: [
       {
-        rel: 'icon',
-        url: '/favicon/favicon.svg',
-        type: 'image/svg+xml'
-      }
-    ]
+        rel: "icon",
+        type: "image/png",
+        sizes: "96x96",
+        url: "/favicon/favicon-96x96.png",
+      },
+    ],
   },
   manifest: "/favicon/site.webmanifest",
-  other: {
-    'msapplication-TileImage': '/favicon/web-app-manifest-192x192.png',
-    'msapplication-TileColor': '#000000',
-    'preload': [
-      '/fonts/BebasNeue-Regular.ttf',
-      '/fonts/Oswald-Regular.ttf'
-    ]
-  }
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${bebasNeue.variable} ${oswald.variable} font-bebas`}>
