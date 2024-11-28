@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
 
 export default function AboutPage() {
   return (
@@ -21,31 +20,13 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
               {/* Left Column - Bio */}
               <div className="space-y-8">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                  className="relative w-[600px] h-[300px]"
-                >
-                  <Image
-                    src="/images/hi.gif"
-                    alt="Hi gif"
-                    width={600}
-                    height={300}
-                    className="object-cover w-full h-full"
-                    unoptimized
-                    priority
-                  />
-                </motion.div>
-
                 <p className="text-xl leading-relaxed">
-                Hi, I’m Athena! My journey into design started as a hobby, and I quickly fell in love with the process. Growing up, I had dreams of going to art school because I loved sketching and painting—but life had other plans. Through web and graphic design, I found my way back to creativity and never looked back.
+                Hi, I'm Athena! My journey into design started as a hobby, and I quickly fell in love with the process. Growing up, I had dreams of going to art school because I loved sketching and painting—but life had other plans. Through web and graphic design, I found my way back to creativity and never looked back.
                 </p>
                 
                 <p className="text-xl leading-relaxed">
-                I’m self-taught and constantly learning to sharpen my skills. I enjoy projects that challenge me and push my creativity to new levels. Fun fact: I’ve redesigned my mom’s business website four times—it’s my personal creative playground! My design style is usually minimal yet meaningful, but I love adapting to whatever each project needs. Thanks for stopping by!
+                I'm self-taught and constantly learning to sharpen my skills. I enjoy projects that challenge me and push my creativity to new levels. Fun fact: I've redesigned my mom's business website four times—it's my personal creative playground! My design style is usually minimal yet meaningful, but I love adapting to whatever each project needs. Thanks for stopping by!
                 </p>
-
               </div>
 
               {/* Right Column - Experience & Skills */}

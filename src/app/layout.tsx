@@ -61,7 +61,11 @@ export const metadata: Metadata = {
   manifest: "/favicon/site.webmanifest",
   other: {
     'msapplication-TileImage': '/favicon/web-app-manifest-192x192.png',
-    'msapplication-TileColor': '#000000'
+    'msapplication-TileColor': '#000000',
+    'preload': [
+      '/fonts/BebasNeue-Regular.ttf',
+      '/fonts/Oswald-Regular.ttf'
+    ]
   }
 };
 

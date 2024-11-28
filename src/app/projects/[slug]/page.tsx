@@ -43,7 +43,7 @@ export default function ProjectPage() {
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={index === 0}
+                    priority={index < 2}
                   />
                 </div>
               ))}
