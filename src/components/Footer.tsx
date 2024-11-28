@@ -34,14 +34,14 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-oswald">
               <Link 
                 href="mailto:hello@athenabikaki.com"
-                className="text-lg md:text-xl hover:opacity-70 transition-opacity"
+                className="text-lg md:text-xl"
               >
                 HELLO@ATHENABIKAKI.COM
               </Link>
               <Link 
                 href="https://instagram.com"
                 target="_blank"
-                className="text-lg md:text-xl hover:opacity-70 transition-opacity"
+                className="text-lg md:text-xl"
               >
                 INSTAGRAM →
               </Link>

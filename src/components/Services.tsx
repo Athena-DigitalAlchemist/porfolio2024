@@ -5,7 +5,7 @@ import { services } from '@/data/siteData';
 
 export default function Services() {
   return (
-    <section className="py-20 mt-5">
+    <section className="py-12">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

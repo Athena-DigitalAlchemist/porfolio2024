@@ -6,7 +6,7 @@ export interface Project {
   slug: string;
   featuredImage: string;  // Main image for portfolio grid
   projectImages: string[];  // Additional images for project page
-  description: string;
+  description?: string;
   link?: string;
 }
 

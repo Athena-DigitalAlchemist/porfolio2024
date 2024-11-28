@@ -8,16 +8,17 @@ import TypewriterText from './TypewriterText';
 
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const splitTextRef = useRef<any>(null);
 
   useEffect(() => {
     if (!titleRef.current) return;
 
-    const splitText = new SplitType(titleRef.current, {
+    splitTextRef.current = new SplitType(titleRef.current, {
       types: 'words,chars',
       tagName: 'span'
     });
 
-    gsap.from(splitText.chars, {
+    const animation = gsap.from(splitTextRef.current.chars, {
       opacity: 0,
       y: 20,
       stagger: 0.05,
@@ -27,7 +28,10 @@ export default function Hero() {
     });
 
     return () => {
-      splitText.revert();
+      animation.kill();
+      if (splitTextRef.current) {
+        splitTextRef.current.revert();
+      }
     };
   }, []);
 

@@ -3,12 +3,12 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { projects } from '@/data/siteData';
 import gsap from 'gsap';
 
 export default function FeaturedProjects() {
-  const featuredProjects = useMemo(() => projects.slice(0, 5), []);
+  const featuredProjects = projects.slice(0, 5);
   const featuredCount = Math.min(projects.length, 5).toString().padStart(2, '0');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [loadingStates, setLoadingStates] = useState<boolean[]>(new Array(5).fill(true));
@@ -75,6 +75,7 @@ export default function FeaturedProjects() {
             key={project.slug}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            className="text-black"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}

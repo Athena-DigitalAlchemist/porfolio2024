@@ -8,52 +8,56 @@ import gsap from 'gsap';
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
+  const elementsRef = useRef(new Set<Element>());
 
   useEffect(() => {
     const cursor = cursorRef.current;
     const cursorDot = cursorDotRef.current;
     if (!cursor || !cursorDot) return;
 
-    document.body.classList.add('cursor-none');
+    const elements = elementsRef.current;
+    let isDestroyed = false;
 
     const onMouseMove = (e: MouseEvent) => {
-      gsap.to(cursor, {
+      if (isDestroyed) return;
+      
+      const gsapConfig = { 
         x: e.clientX,
         y: e.clientY,
+      };
+
+      gsap.to(cursor, {
+        ...gsapConfig,
         duration: 0.6,
         ease: 'expo.out'
       });
 
       gsap.to(cursorDot, {
-        x: e.clientX,
-        y: e.clientY,
+        ...gsapConfig,
         duration: 0.1,
       });
     };
 
-    const handleMouseEnter = () => {
-      cursor?.classList.add('cursor-hover');
-    };
-
-    const handleMouseLeave = () => {
-      cursor?.classList.remove('cursor-hover');
-    };
+    const handleMouseEnter = () => cursor?.classList.add('cursor-hover');
+    const handleMouseLeave = () => cursor?.classList.remove('cursor-hover');
 
     document.addEventListener('mousemove', onMouseMove);
     
     const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
     interactiveElements.forEach(element => {
+      elements.add(element);
       element.addEventListener('mouseenter', handleMouseEnter);
       element.addEventListener('mouseleave', handleMouseLeave);
     });
 
     return () => {
-      document.body.classList.remove('cursor-none');
+      isDestroyed = true;
       document.removeEventListener('mousemove', onMouseMove);
-      interactiveElements.forEach(element => {
+      elements.forEach(element => {
         element.removeEventListener('mouseenter', handleMouseEnter);
         element.removeEventListener('mouseleave', handleMouseLeave);
       });
+      elements.clear();
     };
   }, []);
 
