@@ -16,19 +16,19 @@ export default function AboutPage() {
               {/* Left Column - Bio */}
               <div className="space-y-8">
                 <p className="text-xl leading-relaxed">
-                  Hi, I'm Athena! My journey into design started as a hobby, and I quickly fell in love with the process. Growing up, I had dreams of going to art school because I loved sketching and painting—but life had other plans. Through web and graphic design, I found my way back to creativity and never looked back.
+                  Hi, I&apos;m Athena! My journey into design started as a hobby, and I quickly fell in love with the process. Growing up, I had dreams of going to art school because I loved sketching and painting—but life had other plans. Through web and graphic design, I found my way back to creativity and never looked back.
                 </p>
                 
                 <p className="text-xl leading-relaxed">
-                  I'm self-taught and constantly learning to sharpen my skills. I enjoy projects that challenge me and push my creativity to new levels. Fun fact: I've redesigned my mom's business website four times—it's my personal creative playground! My design style is usually minimal yet meaningful, but I love adapting to whatever each project needs. Thanks for stopping by!
+                  I&apos;m self-taught and constantly learning to sharpen my skills. I enjoy projects that challenge me and push my creativity to new levels. Fun fact: I&apos;ve redesigned my mom&apos;s business website four times—it&apos;s my personal creative playground! My design style is usually minimal yet meaningful, but I love adapting to whatever each project needs. Thanks for stopping by!
                 </p>
               </div>
 
               {/* Right Column - Experience & Skills */}
-              <div>
-                <div className="border-b border-black mb-6">
-                  <h2 className="font-bebas text-3xl mb-4">Experience</h2>
-                  <ul className="space-y-4 mb-6">
+              <div className="space-y-16">
+                <div className="border-b border-black pb-8">
+                  <h2 className="font-bebas text-3xl mb-8">Experience</h2>
+                  <ul className="space-y-8">
                     <li>
                       <h3 className="font-bebas text-xl">UI/UX DESIGNER & DEVELOPER</h3>
                       <p className="text-gray-600">HotelRev • 2021-2024</p>
@@ -40,9 +40,9 @@ export default function AboutPage() {
                   </ul>
                 </div>
 
-                <div className="border-b border-black mb-6">
-                  <h2 className="font-bebas text-3xl mb-4">Skills</h2>
-                  <ul className="grid grid-cols-2 gap-4 mb-6">
+                <div className="border-b border-black pb-8">
+                  <h2 className="font-bebas text-3xl mb-8">Skills</h2>
+                  <ul className="grid grid-cols-2 gap-8">
                     <li className="font-bebas text-xl">UI/UX Design</li>
                     <li className="font-bebas text-xl">Graphic design</li>
                     <li className="font-bebas text-xl">Brand Identity</li>
@@ -53,33 +53,20 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h2 className="font-bebas text-3xl mb-4">Contact</h2>
-                  <ul className="space-y-2">
+                  <h2 className="font-bebas text-3xl mb-8">Contact</h2>
+                  <ul className="space-y-4">
                     <li>
-                      <a 
-                        href="mailto:hello@athenabikaki.com"
-                        className="text-xl hover:opacity-70 transition-opacity"
-                      >
+                      <a href="mailto:hello@athenabikaki.com" className="text-xl hover:opacity-70 transition-opacity">
                         hello@athenabikaki.com
                       </a>
                     </li>
                     <li>
-                      <a 
-                        href="https://instagram.com/_digitalalchemist"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xl hover:opacity-70 transition-opacity"
-                      >
+                      <a href="https://instagram.com/_digitalalchemist" target="_blank" rel="noopener noreferrer" className="text-xl hover:opacity-70 transition-opacity">
                         Instagram
                       </a>
                     </li>
                     <li>
-                      <a 
-                        href="https://facebook.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xl hover:opacity-70 transition-opacity"
-                      >
+                      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xl hover:opacity-70 transition-opacity">
                         Facebook
                       </a>
                     </li>

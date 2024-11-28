@@ -3,21 +3,24 @@
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function StorePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen flex items-center justify-center">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center"
-        >
-          <h1 className="text-7xl md:text-9xl font-bebas mb-4">Store</h1>
-          <p className="text-2xl font-bebas tracking-wide">Coming Soon...</p>
-        </motion.div>
-      </main>
+      <PageWrapper>
+        <main className="min-h-screen pt-32">
+          <div className="px-8">
+            <div className="max-w-7xl mx-auto text-center">
+              <h1 className="font-bebas text-[128px] leading-[0.9] tracking-[-0.02em] mb-4">
+                Store
+              </h1>
+              <p className="font-bebas text-[32px] tracking-wide">Coming Soon...</p>
+            </div>
+          </div>
+        </main>
+      </PageWrapper>
       <Footer />
     </>
   );

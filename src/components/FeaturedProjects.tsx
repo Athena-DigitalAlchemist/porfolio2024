@@ -75,6 +75,7 @@ export default function FeaturedProjects() {
             key={project.slug}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
+            className="text-black"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
