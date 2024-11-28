@@ -1,17 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { services } from '@/data/siteData';
 
 export default function Services() {
   return (
     <section className="py-20 mt-5">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="flex flex-col gap-8"
-      >
+      <div className="flex flex-col gap-8">
         {/* First row - Right to Left */}
         <div className="bg-black border-t border-b border-white/20">
           <div className="marquee-container h-[80px] flex items-center">
@@ -39,7 +33,7 @@ export default function Services() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

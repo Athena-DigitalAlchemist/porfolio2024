@@ -14,6 +14,8 @@ export default function CustomCursor() {
     const cursorDot = cursorDotRef.current;
     if (!cursor || !cursorDot) return;
 
+    document.body.classList.add('cursor-none');
+
     const onMouseMove = (e: MouseEvent) => {
       gsap.to(cursor, {
         x: e.clientX,
@@ -46,6 +48,7 @@ export default function CustomCursor() {
     });
 
     return () => {
+      document.body.classList.remove('cursor-none');
       document.removeEventListener('mousemove', onMouseMove);
       interactiveElements.forEach(element => {
         element.removeEventListener('mouseenter', handleMouseEnter);

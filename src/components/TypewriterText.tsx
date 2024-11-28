@@ -7,25 +7,24 @@ interface TypewriterTextProps {
   delay?: number;
 }
 
-export default function TypewriterText({ text, delay = 100 }: TypewriterTextProps) {
+const TypewriterText = ({ text, delay = 100 }: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, delay);
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (currentIndex <= text.length) {
+        setDisplayText(text.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, delay);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, delay, text]);
+    return () => clearInterval(interval);
+  }, [text, delay]);
 
-  return (
-    <span className="font-bebas tracking-wide">
-      {displayText}
-      <span className="animate-blink">|</span>
-    </span>
-  );
-}
+  return <span className="font-bebas tracking-wide">{displayText}</span>;
+};
+
+export default TypewriterText;
