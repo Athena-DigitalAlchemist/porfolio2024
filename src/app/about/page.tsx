@@ -2,6 +2,8 @@
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
@@ -56,18 +58,35 @@ export default function AboutPage() {
                   <h2 className="font-bebas text-3xl mb-8">Contact</h2>
                   <ul className="space-y-4">
                     <li>
-                      <a href="mailto:hello@athenabikaki.com" className="text-xl hover:opacity-70 transition-opacity">
+                      <a 
+                        href="mailto:hello@athenabikaki.com" 
+                        className="text-xl hover:opacity-70 transition-opacity flex items-center gap-2"
+                      >
                         hello@athenabikaki.com
+                        <Image 
+                          src="/icons/link.png" 
+                          alt="Arrow" 
+                          width={16} 
+                          height={16} 
+                          className="w-4 h-4"
+                        />
                       </a>
                     </li>
                     <li>
-                      <a href="https://instagram.com/_digitalalchemist" target="_blank" rel="noopener noreferrer" className="text-xl hover:opacity-70 transition-opacity">
+                      <a 
+                        href="https://instagram.com/_digitalalchemist" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-xl hover:opacity-70 transition-opacity flex items-center gap-2"
+                      >
                         Instagram
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-xl hover:opacity-70 transition-opacity">
-                        Facebook
+                        <Image 
+                          src="/icons/link.png" 
+                          alt="Arrow" 
+                          width={16} 
+                          height={16} 
+                          className="w-4 h-4"
+                        />
                       </a>
                     </li>
                   </ul>

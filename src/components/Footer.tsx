@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import TypewriterText from './TypewriterText';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -34,23 +35,30 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-oswald">
               <Link 
                 href="mailto:hello@athenabikaki.com"
-                className="text-lg md:text-xl"
+                className="text-lg md:text-xl flex items-center gap-2 hover:opacity-70 transition-opacity"
               >
                 HELLO@ATHENABIKAKI.COM
+                <Image 
+                  src="/icons/link-w.png" 
+                  alt="Arrow" 
+                  width={16} 
+                  height={16} 
+                  className="w-4 h-4"
+                />
               </Link>
               <Link 
-                href="https://instagram.com"
+                href="https://instagram.com/_digitalalchemist"
                 target="_blank"
-                className="text-lg md:text-xl"
+                className="text-lg md:text-xl flex items-center gap-2 hover:opacity-70 transition-opacity"
               >
-                INSTAGRAM →
-              </Link>
-              <Link 
-                href="https://facebook.com"
-                target="_blank"
-                className="text-lg md:text-xl hover:opacity-70 transition-opacity"
-              >
-                FACEBOOK →
+                INSTAGRAM
+                <Image 
+                  src="/icons/link-w.png" 
+                  alt="Arrow" 
+                  width={16} 
+                  height={16} 
+                  className="w-4 h-4"
+                />
               </Link>
             </div>
           </div>

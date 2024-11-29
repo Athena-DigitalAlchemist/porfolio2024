@@ -1,162 +1,87 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState, useRef, useEffect, useMemo } from 'react';
-import { projects } from '@/data/siteData';
-import gsap from 'gsap';
+import { projects } from '@/data/siteData'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function FeaturedProjects() {
-  const featuredProjects = useMemo(() => projects.slice(0, 5), []);
-  const featuredCount = Math.min(projects.length, 5).toString().padStart(2, '0');
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [loadingStates, setLoadingStates] = useState<boolean[]>(new Array(5).fill(true));
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const imageWrapperRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    if (hoveredIndex !== null && imageWrapperRefs.current[hoveredIndex] && imageRefs.current[hoveredIndex]) {
-      const wrapper = imageWrapperRefs.current[hoveredIndex];
-      const image = imageRefs.current[hoveredIndex];
-
-      gsap.set([wrapper, image], {
-        opacity: 0,
-        y: 20,
-        scale: 0.95
-      });
-
-      const tl = gsap.to([wrapper, image], {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.5,
-        ease: "power3.out",
-        stagger: 0.1
-      });
-
-      return () => {
-        tl.kill();
-      };
-    }
-  }, [hoveredIndex]);
-
-  const handleImageLoad = (index: number) => {
-    setLoadingStates(prev => {
-      const newStates = [...prev];
-      newStates[index] = false;
-      return newStates;
-    });
-  };
+  const featuredProjects = projects.slice(0, 5);
 
   return (
-    <motion.section 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="w-full bg-white py-32"
-    >
-      <div className="px-8">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="font-bebas text-[32px] md:text-[48px] leading-none tracking-wide mb-16"
+    <div className="mt-32">
+      <div className="px-8 flex justify-between items-baseline">
+        <div className="flex items-baseline gap-2">
+          <h1 className="font-bebas text-[24px]">FEATURED PROJECTS</h1>
+          <span className="font-bebas text-[24px] text-[#666666]">(05)</span>
+        </div>
+        <Link 
+          href="/projectIndex" 
+          className="font-bebas text-[13px] tracking-wide hover:opacity-60 transition-opacity flex items-center gap-2"
         >
-          Featured Projects
-          <span className="text-2xl opacity-60">({featuredCount})</span>
-        </motion.h2>
+          VIEW ALL PROJECTS
+          <Image 
+            src="/icons/link.png" 
+            alt="Arrow" 
+            width={16} 
+            height={16} 
+            className="w-4 h-4"
+          />
+        </Link>
       </div>
       
-      <div className="w-full">
-        {featuredProjects.map((project, index) => (
+      <div className="mt-16">
+        {featuredProjects.map((project) => (
           <Link 
-            href={`/projects/${project.slug}`} 
-            key={project.slug}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            className="text-black"
+            href={`/projects/${project.slug}`}
+            key={project.title} 
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="border-t border-black/20 group"
-            >
-              <div className="px-8 py-4 relative">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start relative z-10">
-                  <div className="space-y-0.5 mb-2 md:mb-0">
-                    <h3 className="font-bebas text-[24px] tracking-wide">
-                      {project.title}
-                    </h3>
+            <article className="group relative border-t border-black/20 cursor-pointer">
+              <div className="px-8 py-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h2 className="font-bebas text-[24px] tracking-wide">{project.title}</h2>
                     <p className="font-bebas text-[13px] tracking-wide">
                       {project.type}
                     </p>
                   </div>
-                  <div className="flex items-center space-x-4 md:space-x-12">
+                  
+                  <div className="flex items-center space-x-12">
                     <div>
-                      <p className="font-bebas text-[13px] tracking-wide">
-                        {project.job}
-                      </p>
+                      <p className="font-bebas text-[13px] tracking-wide">{project.job}</p>
                     </div>
-                    <div>
-                      <p className="font-bebas text-[13px] tracking-wide">
-                        {project.year}
-                      </p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-bebas text-[13px] tracking-wide">{project.year}</p>
+                      <Image 
+                        src="/icons/link.png" 
+                        alt="Arrow" 
+                        width={16} 
+                        height={16} 
+                        className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                      />
                     </div>
                   </div>
                 </div>
 
-                {/* Image Preview matching Project Index style */}
-                {hoveredIndex === index && (
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    ref={el => {
-                      if (el) imageWrapperRefs.current[index] = el;
-                    }}
-                    className="hidden md:block absolute right-0 top-0 w-[400px] h-full"
-                  >
-                    <div
-                      ref={el => {
-                        if (el) imageRefs.current[index] = el;
-                      }}
-                      className="relative w-full h-full"
-                    >
-                      <Image
-                        src={project.featuredImage}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 400px"
-                        priority
-                        onLoadingComplete={() => handleImageLoad(index)}
-                      />
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Mobile Image Preview */}
-                <div className="block md:hidden w-full aspect-[16/9] mt-4 overflow-hidden">
-                  <div className="relative w-full h-full">
+                <div 
+                  className="pointer-events-none absolute top-1/2 -translate-y-1/2 right-[30%] w-[350px] h-[400px] 
+                             opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50"
+                >
+                  <div className="relative w-full h-full overflow-hidden">
                     <Image
                       src={project.featuredImage}
                       alt={project.title}
                       fill
                       className="object-cover project-image"
-                      sizes="100vw"
-                      priority={index === 0}
-                      onLoadingComplete={() => handleImageLoad(index)}
+                      priority
                     />
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </article>
           </Link>
         ))}
         <div className="border-t border-black/20" />
       </div>
-    </motion.section>
-  );
+    </div>
+  )
 }

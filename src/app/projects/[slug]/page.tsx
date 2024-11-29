@@ -96,9 +96,16 @@ export default function ProjectPage() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-lg underline hover:opacity-70 transition-opacity"
+                        className="text-lg flex items-center gap-2 hover:opacity-70 transition-opacity"
                       >
-                        View Live Project →
+                        View Live Project
+                        <Image 
+                          src="/icons/link.png" 
+                          alt="Arrow" 
+                          width={16} 
+                          height={16} 
+                          className="w-4 h-4"
+                        />
                       </a>
                     </div>
                   )}
@@ -106,9 +113,16 @@ export default function ProjectPage() {
                   <div className="pt-8">
                     <Link 
                       href="/projectIndex"
-                      className="text-lg hover:opacity-70 transition-opacity"
+                      className="text-lg hover:opacity-70 transition-opacity flex items-center gap-2"
                     >
-                      ← Back to Projects
+                      <Image 
+                        src="/icons/link.png" 
+                        alt="Arrow" 
+                        width={16} 
+                        height={16} 
+                        className="w-4 h-4 rotate-180"
+                      />
+                      Back to Projects
                     </Link>
                   </div>
                 </div>

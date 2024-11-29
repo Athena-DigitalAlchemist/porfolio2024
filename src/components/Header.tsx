@@ -33,29 +33,55 @@ const Header = () => {
         <div className="flex items-center h-[60px]">
           <Link 
             href="/projectIndex" 
-            className="text-[14px] h-full flex items-center gap-2 px-8"
+            className="text-[14px] h-full flex items-center gap-2 px-8 group"
           >
             index <span className="text-xs opacity-60">({totalProjectCount})</span>
+            <Image 
+              src="/icons/link.png" 
+              alt="Arrow" 
+              width={16} 
+              height={16} 
+              className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+            />
           </Link>
           <Link 
             href="/about" 
-            className={`font-bebas text-[14px] tracking-wide ${
-              pathname === '/about' ? 'opacity-60' : ''
-            }`}
+            className="font-bebas text-[14px] tracking-wide flex items-center gap-2 group"
           >
             WHO I AM
+            <Image 
+              src="/icons/link.png" 
+              alt="Arrow" 
+              width={16} 
+              height={16} 
+              className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+            />
           </Link>
           <Link 
             href="/store" 
-            className="text-[14px] h-full flex items-center px-8"
+            className="text-[14px] h-full flex items-center gap-2 px-8 group"
           >
             store
+            <Image 
+              src="/icons/link.png" 
+              alt="Arrow" 
+              width={16} 
+              height={16} 
+              className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+            />
           </Link>
           <a 
             href="mailto:your.email@example.com" 
-            className="text-[14px] h-[40px] flex items-center px-8 bg-black text-white my-auto"
+            className="text-[14px] h-[40px] flex items-center gap-2 px-8 bg-black text-white my-auto"
           >
             LET&apos;S TALK
+            <Image 
+              src="/icons/link-w.png" 
+              alt="Arrow" 
+              width={16} 
+              height={16} 
+              className="w-3 h-3"
+            />
           </a>
         </div>
       </div>
