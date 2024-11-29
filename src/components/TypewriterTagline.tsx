@@ -37,7 +37,7 @@ const TypewriterTagline = () => {
   }, []);
 
   return (
-    <div className="font-oswald text-[12px] leading-[1.2] flex flex-col justify-center">
+    <div className="font-bebas text-[12px] leading-[1.2] flex flex-col justify-center">
       <div>
         {text1}
         {text1.length === fullText1.length && text2.length === 0 && (

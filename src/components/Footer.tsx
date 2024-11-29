@@ -24,7 +24,7 @@ export default function Footer() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-[40px] md:text-[60px] mt-4"
+              className="font-bebas text-[40px] md:text-[60px] mt-4"
             >
               — DROP ME A LINE!
             </motion.h3>
@@ -32,7 +32,7 @@ export default function Footer() {
 
           {/* Contact Links with arrows */}
           <div className="mt-20 mb-40">
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-oswald">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-bebas">
               <Link 
                 href="mailto:hello@athenabikaki.com"
                 className="text-lg md:text-xl flex items-center gap-2 hover:opacity-70 transition-opacity"
@@ -81,7 +81,7 @@ export default function Footer() {
               viewport={{ once: true }}
               className="text-right"
             >
-              <Link href="#top" className="hover:opacity-70 transition-opacity">
+              <Link href="#top" className="font-bebas hover:opacity-70 transition-opacity">
                 BACK TO TOP ↑
               </Link>
             </motion.div>

@@ -194,9 +194,9 @@ Poster 4 - Rewrite Your Narrative`,
     type: "GRAPHIC DESIGN",
     job: "Case Study",
     year: "2021",
-    featuredImage: "/images/projects/project17.jpg",
+    featuredImage: "/images/projects/project17.png",
     projectImages: [
-      "/images/projects/project17-1.jpg"
+      "/images/projects/project17-1.png"
     ],
     description: "Both of these stationery designs showcase your attention to detail and your ability to create visually appealing and cohesive products. The first design offers a sophisticated, minimalist aesthetic, while the second design presents a more expressive, artistic approach. Both options have their own unique charm and appeal, allowing you to cater to different personal styles and preferences.",
     link: ""

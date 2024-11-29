@@ -5,19 +5,7 @@ import "./globals.css";
 
 const bebasNeue = localFont({
   src: './fonts/BebasNeue-Regular.ttf',
-  variable: '--font-bebas-neue',
-  display: 'swap',
-});
-
-const oswald = localFont({
-  src: [
-    {
-      path: './fonts/Oswald-Regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-oswald',
+  variable: '--font-bebas',
   display: 'swap',
 });
 
@@ -58,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${bebasNeue.variable} ${oswald.variable} font-bebas`}>
+    <html lang="en">
+      <body className={bebasNeue.variable}>
         <Providers>
           {children}
         </Providers>

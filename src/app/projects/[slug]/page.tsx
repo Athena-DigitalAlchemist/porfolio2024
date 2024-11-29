@@ -15,8 +15,8 @@ export default function ProjectPage() {
   if (!project) {
     return (
       <div className="min-h-screen pt-32 px-8">
-        <h1 className="text-4xl mb-4">Project not found</h1>
-        <Link href="/projectIndex" className="underline">Back to Projects</Link>
+        <h1 className="font-bebas text-4xl mb-4">Project not found</h1>
+        <Link href="/projectIndex" className="font-bebas underline">Back to Projects</Link>
       </div>
     );
   }
@@ -58,24 +58,24 @@ export default function ProjectPage() {
                 <div className="space-y-8">
                   <div>
                     <h1 className="font-bebas text-6xl mb-4">{project.title}</h1>
-                    <p className="text-xl text-gray-600">{project.type}</p>
+                    <p className="font-bebas text-xl text-gray-600">{project.type}</p>
                   </div>
 
                   <div className="space-y-4">
                     <div>
                       <span className="font-bebas text-xl">Role:</span>
-                      <span className="ml-2">{project.job}</span>
+                      <span className="font-bebas ml-2">{project.job}</span>
                     </div>
                     <div>
                       <span className="font-bebas text-xl">Year:</span>
-                      <span className="ml-2">{project.year}</span>
+                      <span className="font-bebas ml-2">{project.year}</span>
                     </div>
                   </div>
 
                   {project.description && (
                     <div>
                       <h2 className="font-bebas text-2xl mb-4">About</h2>
-                      <div className="text-lg leading-relaxed space-y-4">
+                      <div className="font-bebas text-lg leading-relaxed space-y-4">
                         {project.description.split('\n\n').map((paragraph, index) => (
                           <p key={index}>
                             {paragraph.split('\n').map((line, lineIndex) => (
@@ -96,7 +96,7 @@ export default function ProjectPage() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-lg flex items-center gap-2 hover:opacity-70 transition-opacity"
+                        className="font-bebas text-lg flex items-center gap-2 hover:opacity-70 transition-opacity"
                       >
                         View Live Project
                         <Image 
@@ -113,7 +113,7 @@ export default function ProjectPage() {
                   <div className="pt-8">
                     <Link 
                       href="/projectIndex"
-                      className="text-lg hover:opacity-70 transition-opacity flex items-center gap-2"
+                      className="font-bebas text-lg hover:opacity-70 transition-opacity flex items-center gap-2"
                     >
                       <Image 
                         src="/icons/link.png" 

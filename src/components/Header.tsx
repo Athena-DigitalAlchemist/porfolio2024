@@ -33,7 +33,7 @@ const Header = () => {
         <div className="flex items-center h-[60px]">
           <Link 
             href="/projectIndex" 
-            className="text-[14px] h-full flex items-center gap-2 px-8 group"
+            className="font-bebas text-[14px] h-full flex items-center gap-2 px-8 group"
           >
             index <span className="text-xs opacity-60">({totalProjectCount})</span>
             <Image 
@@ -59,7 +59,7 @@ const Header = () => {
           </Link>
           <Link 
             href="/store" 
-            className="text-[14px] h-full flex items-center gap-2 px-8 group"
+            className="font-bebas text-[14px] h-full flex items-center gap-2 px-8 group"
           >
             store
             <Image 
@@ -72,7 +72,7 @@ const Header = () => {
           </Link>
           <a 
             href="mailto:your.email@example.com" 
-            className="text-[14px] h-[40px] flex items-center gap-2 px-8 bg-black text-white my-auto"
+            className="font-bebas text-[14px] h-[40px] flex items-center gap-2 px-8 bg-black text-white my-auto"
           >
             LET&apos;S TALK
             <Image 

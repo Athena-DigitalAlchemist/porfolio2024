@@ -17,11 +17,11 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl">
               {/* Left Column - Bio */}
               <div className="space-y-8">
-                <p className="text-xl leading-relaxed">
+                <p className="font-bebas text-xl leading-relaxed">
                   Hi, I&apos;m Athena! My journey into design started as a hobby, and I quickly fell in love with the process. Growing up, I had dreams of going to art school because I loved sketching and painting—but life had other plans. Through web and graphic design, I found my way back to creativity and never looked back.
                 </p>
                 
-                <p className="text-xl leading-relaxed">
+                <p className="font-bebas text-xl leading-relaxed">
                   I&apos;m self-taught and constantly learning to sharpen my skills. I enjoy projects that challenge me and push my creativity to new levels. Fun fact: I&apos;ve redesigned my mom&apos;s business website four times—it&apos;s my personal creative playground! My design style is usually minimal yet meaningful, but I love adapting to whatever each project needs. Thanks for stopping by!
                 </p>
               </div>
@@ -33,11 +33,11 @@ export default function AboutPage() {
                   <ul className="space-y-8">
                     <li>
                       <h3 className="font-bebas text-xl">UI/UX DESIGNER & DEVELOPER</h3>
-                      <p className="text-gray-600">HotelRev • 2021-2024</p>
+                      <p className="font-bebas text-gray-600">HotelRev • 2021-2024</p>
                     </li>
                     <li>
                       <h3 className="font-bebas text-xl">A MIX OF EVERYTHING!</h3>
-                      <p className="text-gray-600">Freelance • 2018-2021</p>
+                      <p className="font-bebas text-gray-600">Freelance • 2018-2021</p>
                     </li>
                   </ul>
                 </div>
@@ -60,7 +60,7 @@ export default function AboutPage() {
                     <li>
                       <a 
                         href="mailto:hello@athenabikaki.com" 
-                        className="text-xl hover:opacity-70 transition-opacity flex items-center gap-2"
+                        className="font-bebas text-xl hover:opacity-70 transition-opacity flex items-center gap-2"
                       >
                         hello@athenabikaki.com
                         <Image 
@@ -77,7 +77,7 @@ export default function AboutPage() {
                         href="https://instagram.com/_digitalalchemist" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="text-xl hover:opacity-70 transition-opacity flex items-center gap-2"
+                        className="font-bebas text-xl hover:opacity-70 transition-opacity flex items-center gap-2"
                       >
                         Instagram
                         <Image 

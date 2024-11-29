@@ -11,7 +11,7 @@ export default function Services() {
           <div className="marquee-container h-[80px] flex items-center">
             <div className="marquee-right-to-left whitespace-nowrap">
               {[...services.row1, ...services.row1, ...services.row1].map((service, index) => (
-                <span key={index} className="text-white text-[60px] leading-none mx-8 font-normal inline-block">
+                <span key={index} className="font-bebas text-white text-[60px] leading-none mx-8 font-normal inline-block">
                   {service}
                   <span className="text-white/40 mx-8">-</span>
                 </span>
@@ -25,7 +25,7 @@ export default function Services() {
           <div className="marquee-container h-[80px] flex items-center">
             <div className="marquee-left-to-right whitespace-nowrap">
               {[...services.row2, ...services.row2, ...services.row2].map((service, index) => (
-                <span key={index} className="text-white text-[60px] leading-none mx-8 font-normal inline-block">
+                <span key={index} className="font-bebas text-white text-[60px] leading-none mx-8 font-normal inline-block">
                   {service}
                   <span className="text-white/40 mx-8">-</span>
                 </span>

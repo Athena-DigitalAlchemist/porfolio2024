@@ -18,10 +18,9 @@ const AnimatedLogo = () => {
         repeatType: "reverse",
         ease: "easeInOut"
       }}
-      className="relative"
     >
       <Image
-        src="/logo/animated-face.svg"  // Updated to use the white version
+        src="/logo/animated-face.svg"
         alt="Athena logo"
         width={60}
         height={60}

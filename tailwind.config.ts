@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        'bebas': ['var(--font-bebas-neue)', 'sans-serif'],
-        'oswald': ['var(--font-oswald)', 'sans-serif'],
+        'bebas': ['var(--font-bebas)', 'sans-serif'],
+        'sans': ['system-ui', 'sans-serif'],
       },
     },
   },

@@ -3,8 +3,11 @@
 import { projects } from '@/data/siteData'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
+import ProjectImagePreview from './ProjectImagePreview';
 
 export default function FeaturedProjects() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const featuredProjects = projects.slice(0, 5);
 
   return (
@@ -30,12 +33,15 @@ export default function FeaturedProjects() {
       </div>
       
       <div className="mt-16">
-        {featuredProjects.map((project) => (
+        {featuredProjects.map((project, index) => (
           <Link 
             href={`/projects/${project.slug}`}
-            key={project.title} 
+            key={project.title}
+            className="group"
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
-            <article className="group relative border-t border-black/20 cursor-pointer">
+            <article className="relative border-t border-black/20">
               <div className="px-8 py-4">
                 <div className="flex items-start justify-between">
                   <div>
@@ -62,20 +68,11 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
 
-                <div 
-                  className="pointer-events-none absolute top-1/2 -translate-y-1/2 right-[30%] w-[350px] h-[400px] 
-                             opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50"
-                >
-                  <div className="relative w-full h-full overflow-hidden">
-                    <Image
-                      src={project.featuredImage}
-                      alt={project.title}
-                      fill
-                      className="object-cover project-image"
-                      priority
-                    />
-                  </div>
-                </div>
+                <ProjectImagePreview 
+                  isVisible={hoveredIndex === index}
+                  imageSrc={project.featuredImage}
+                  title={project.title}
+                />
               </div>
             </article>
           </Link>
